@@ -1,4 +1,12 @@
-import {Alert, Button, Image, Pressable, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {
+  Alert,
+  Button,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react';
 
@@ -13,15 +21,14 @@ const App = () => {
         style={{ width: 200, height: 200 }}
       />
 
-      <Button title="click me"/>
-      <TouchableOpacity style={{padding:10,backgroundColor:'green'}} onPress={()=>Alert.alert("Button Pressed!!")} >
+      {/* <Button title="click me"/> */}
+      {/* <TouchableOpacity style={{padding:10,backgroundColor:'green'}} onPress={()=>Alert.alert("Button Pressed!!")} >
         <Text>Button</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      <Pressable style={{padding:10, backgroundColor:"yellow"}}>
-        <Text>Pressable button</Text>
+      <Pressable style={styles.button}>
+        <Text style={styles.btnText}>Button</Text>
       </Pressable>
-        
     </SafeAreaView>
   );
 };
@@ -31,14 +38,31 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width:"100%" ,
-    height:"100%" ,
-    backgroundColor:"coral"
-
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'plum  ',
+    padding:2,
+    gap:10,
   },
-  text:{
-    color:"white" , 
-    fontStyle:"italic"
+  text: {
+    color: 'white',
+    fontStyle: 'italic',
+  },
+  button: {
+  backgroundColor: "lightBlue",
+  paddingVertical: 10,
+  overflow:"hidden",
+  paddingHorizontal: 20,
+  width: 100,
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 10,
+  borderWidth: 6,
+  borderColor: "white",
+  borderRadius: 22, // half of height for a perfect pill
+},
+  btnText:{
+    color:"white",
+    fontWeight:"bold",
   }
- 
 });
