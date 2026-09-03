@@ -1,8 +1,12 @@
+import { style } from 'motion/react-client';
+import { useState } from 'react';
 import {
   FlatList,
   Image,
+  Pressable,
   StyleSheet,
   Text,
+  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
@@ -198,11 +202,20 @@ const App = () => {
   const backgroundColor = isDarkMode ? 'black' : 'white';
   const textColor = isDarkMode ? 'white' : 'black';
 
+  const [text, setText] = useState('');
+  const [submittedText, setSubmittedText] = useState('');
+
+  console.log(text);
+  const handleClick = () => {
+    setSubmittedText(text);
+    setText("");
+
+  };
+
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: backgroundColor }]}
     >
-     
       <FlatList
         data={dummyUsers}
         renderItem={({ item }) => (
@@ -219,8 +232,31 @@ const App = () => {
         // columnWrapperStyle={{ gap: 10 }}
         // numColumns={2}
         horizontal
+        style={styles.FlatList}
       />
-      
+
+      <View style={styles.inputBox}>
+        <Text style={[styles.text, { color: textColor, fontSize: 28 }]}>
+          {' '}
+          Welcome to PInstagram!
+        </Text>
+        <TextInput
+          placeholder="Enter Your name"
+          style={styles.input}
+          value={text}
+          multiline
+          onChangeText={setText}
+        />
+
+        <Pressable
+          style={{ backgroundColor: 'lightblue', padding: 6, borderRadius: 10 }}
+          onPress={handleClick}
+        >
+          <Text style={[styles.text, { color: textColor }]}>Click me</Text>
+        </Pressable>
+
+        {submittedText && <Text style={[styles.text, { color: textColor }]}>Result : {submittedText}</Text>}
+      </View>
     </SafeAreaView>
   );
 };
@@ -233,15 +269,15 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
     fontWeight: 'bold',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   card: {
-    marginTop:10,
+    marginTop: 10,
     width: 100,
     height: 70,
     borderRadius: 10,
@@ -251,10 +287,27 @@ const styles = StyleSheet.create({
   },
   cardImg: {
     height: 70,
-    borderWidth:2,
-    borderColor:"crimson",
+    borderWidth: 2,
+    borderColor: 'crimson',
     width: 70,
     padding: 2,
     borderRadius: 50,
+  },
+  FlatList: {
+    flexGrow: 0,
+  },
+  inputBox: {
+    paddingVertical: 10,
+    width: '100%',
+    paddingHorizontal: 40,
+    alignItems: 'center',
+  },
+  input: {
+    borderWidth: 1,
+    backgroundColor: '#555',
+    borderRadius: 6,
+    width: '100%',
+    paddingVertical: 10,
+    marginVertical: 10,
   },
 });
