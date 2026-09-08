@@ -79,7 +79,7 @@ export const Home = ({navigation}) => {
             <Text style={[styles.text, { color: textColor }]}>Click me</Text>
           </Pressable>
 
-          <Button title="profile" style={styles.navigateBtn} onPress={()=> navigation.navigate('profile')}/>
+          <Button title="profile" style={styles.navigateBtn} onPress={()=> navigation.navigate('profile' , {id : 1 , name : "prem"})}/>
 
           {submittedText && (
             <Text style={[styles.text, { color: textColor }]}>
